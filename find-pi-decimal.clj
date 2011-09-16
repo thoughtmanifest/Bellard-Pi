@@ -1,15 +1,15 @@
 (use 'clojure.contrib.generic.math-functions)
 
-;pi = SUMMATION 
-; (1/2^6) * 
-; ((-1)^n/2^10n) *
-; (-(2^5/4n+1) -
-;  (1/4n+3) +
-;  (2^8/10n+1) -
-;  (2^6/10n+3) -
-;  (2^2/10n+5) -
-;  (2^2/10n+7) +
-;  (1/10n+9))
+; pi = SUMMATION n=0 to infinity of
+;   (1/2^6) 
+; * ((-1)^n/2^10n)
+; * (- (2^5/4n+1)
+;  	 - (1/4n+3)
+;    + (2^8/10n+1) 
+;    - (2^6/10n+3)
+;    - (2^2/10n+5)
+;    - (2^2/10n+7)
+;    + (1/10n+9))
 (defn mult4 [n] (* 4 n))
 (defn mult10 [n] (* 10 n))
 (defn arg1 [n] (- (/ (pow 2 5) (+ (mult4 n) 1))))
@@ -25,4 +25,22 @@
 	(* (marg1 n) marg2 
 		(+ (arg1 n) (arg2 n) (arg3 n) (arg4 n) (arg5 n) (arg6 n) (arg7 n))))
 
+(defn better-bellard 
+	"iterates through the bellard formula for pi an [n] number of times, 
+	 supplying more meaningful decimals of pi for every iteration"
+	[n]
+	(loop [cnt 0
+		   pi 0.0]
+		(if (> cnt n)
+			pi
+			(recur (inc cnt) (+ pi (bellard cnt))))))
+
+;(defn mul_mod [a b]
+;	(rem (* a b) 1))
+
+;(defn loopy [u]
+;	(loop []))
+
+;(defn inv_mod [x y]
+;	(/ y x))
 
