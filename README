@@ -1,1 +1,3 @@
 This project is helping me learn clojure.
+
+Right now it just calculates pi using bellard's formula (http://en.wikipedia.org/wiki/Bellard's_formula), but I'll be adding support for finding the n-th digit of pi without calculating the previous n-1 digits.  Mostly I'll just be converting a C# application, then tailoring it for clojure's trappings.
